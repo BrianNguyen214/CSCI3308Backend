@@ -1,10 +1,23 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from tokens import GetToken1, GetToken2, GetToken3
+#from tokens import GetToken1, GetToken2, GetToken3
 import random
 import string
 
+from django.contrib.auth.tokens import PasswordResetTokenGenerator
+from django.utils import six
+
+def GetToken1():
+    token = random.randint(1,2147483647)
+    return token
+
+def GetToken2():
+    token = random.randint(1,2147483647)
+    return token
+
+def GetToken3(size=300, chars=string.ascii_uppercase):
+    return ''.join(random.choice(chars) for _ in range(size))
 class Event(models.Model):
     Category = models.CharField(max_length=300)
     Title = models.CharField(max_length=250)
@@ -17,9 +30,12 @@ class Event(models.Model):
     Phone = models.CharField(max_length=20)
     AgeRestriction = models.IntegerField()
     WebsiteLink = models.CharField(max_length=3000)
-    token1 = models.IntegerField(default=GetToken1) #passing a reference to the function not the actual function value
-    token2 = models.IntegerField(default=GetToken2) #passing a reference to the function not the actual function value
-    token3 = models.CharField(default=GetToken3, max_length=1000)
+    #token1 = models.IntegerField(default=GetToken1) #passing a reference to the function not the actual function value
+    #token2 = models.IntegerField(default=GetToken2) #passing a reference to the function not the actual function value
+    #token3 = models.CharField(default=GetToken3, max_length=1000)
+    token1 = models.IntegerField(default=GetToken1()) 
+    token2 = models.IntegerField(default=GetToken2()) 
+    token3 = models.CharField(default=GetToken3(), max_length=1000)
 
 
     def __str__(self):
