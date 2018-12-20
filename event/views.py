@@ -368,7 +368,7 @@ def GetSpecificEvent(request, **kwargs):
         theSpecificEvent = Event.objects.get(token1=kwargs['token1'])
         #print(theSpecificEvent)
         convertedSpecificEvent = theSpecificEvent.toJSON()
-        #print(convertedSpecificEvent)
+        print(convertedSpecificEvent)
         '''
         print(str(convertedSpecificEvent['token1']))
         print(str(convertedSpecificEvent['token2']))
